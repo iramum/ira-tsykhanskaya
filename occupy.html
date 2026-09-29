@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Occupy // Ira Tsykhanskaya</title><meta name="description" content="The everyday appropriation of public space and the normalized violence embedded in it. On a resort beach, personal belongings replace the body, marking territory before anyone is physically present."><link rel="stylesheet" href="fonts.css"><style>
+/* Layout: an exhibition checklist. One ruled table of works; work pages keep the label on the left and let images run on the right. */
+:root{
+  --bg:#f6f6f3; --ink:#141413; --muted:#7c7b75; --line:rgba(20,20,19,.13); --hl:#ebebe6; --mark:#7a6552;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --gutter:clamp(16px,3.2vw,40px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121211;--ink:#e8e7e2;--muted:#8e8d86;--line:rgba(232,231,226,.14);--hl:#1d1d1b;--mark:#b89f88;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121211;--ink:#e8e7e2;--muted:#8e8d86;--line:rgba(232,231,226,.14);--hl:#1d1d1b;--mark:#b89f88;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
+img{max-width:100%;height:auto;display:block}
+.wrap{padding-inline:var(--gutter);max-width:90rem;margin-inline:auto}
+.head{display:flex;flex-wrap:wrap;gap:.4rem 2rem;justify-content:space-between;align-items:baseline;padding-block:1.5rem 1.2rem}
+.name{font-weight:500}
+.nav{display:flex;flex-wrap:wrap;gap:.2rem 1.5rem;color:var(--muted)}
+.nav a:hover,.nav a[aria-current]{color:var(--ink)}
+.foot{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;justify-content:space-between;padding-block:3rem 3rem;margin-top:6rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+.foot a:hover{color:var(--ink)}
+.lede{max-width:38rem;color:var(--muted);margin:2.5rem 0 3rem}
+.lede b{color:var(--ink);font-weight:400}
+.filters{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;margin-bottom:.6rem;font:400 .8rem/1.5 var(--mono);color:var(--muted)}
+.filters button{all:unset;cursor:pointer}
+.filters button[aria-pressed=true]{color:var(--ink);text-decoration:underline;text-underline-offset:.25em}
+.filters .count{margin-left:auto}
+.list{width:100%;border-collapse:collapse}
+.list td{min-width:0;overflow-wrap:anywhere}
+.list th{font:400 .75rem/1.4 var(--mono);color:var(--muted);text-align:left;padding:.5rem .8rem .5rem 0;border-bottom:1px solid var(--ink)}
+.list td{padding:.62rem .8rem .62rem 0;border-bottom:1px solid var(--line);vertical-align:top}
+.list tr.has td{cursor:pointer}
+.list tr.has:hover td{background:var(--hl)}
+.list td.y{font:400 .8rem/1.9 var(--mono);font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap;width:6.5rem}
+.list td.t a{font-weight:500}
+.list td.t .w{display:block;color:var(--muted);font-size:.85rem;font-weight:400}
+.list tr:not(.has) td.t{font-weight:500}
+.list td.m,.list td.v{color:var(--muted);font-size:.9rem}
+.list td.go{width:1.5rem;text-align:right;color:var(--mark)}
+.peek{position:fixed;right:var(--gutter);bottom:var(--gutter);width:min(26vw,360px);pointer-events:none;opacity:0;transition:opacity .15s}
+.peek.on{opacity:1}
+.peek img{width:100%;aspect-ratio:4/3;object-fit:cover}
+@media (max-width:760px){
+  .list,.list tbody{display:block}
+  .list thead{display:none}
+  .list tr{display:grid;grid-template-columns:4.6rem 1fr 1rem;padding-block:.7rem;border-bottom:1px solid var(--line)}
+  .list td{border:0;padding:0}
+  .list td.m,.list td.v{grid-column:2;font-size:.85rem}
+  .list td.go{grid-column:3;grid-row:1}
+  .peek{display:none}
+}
+@media (hover:none){.peek{display:none}}
+.work{display:grid;grid-template-columns:minmax(0,24rem) minmax(0,1fr);gap:2.5rem 4rem;align-items:start;margin-top:2.5rem}
+@media (max-width:900px){.work{grid-template-columns:minmax(0,1fr)}}
+.info{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1.2rem);display:grid;gap:1.3rem;min-width:0}
+@media (max-width:900px){.info{position:static}}
+.info h1{font:500 1.6rem/1.2 var(--sans);text-wrap:balance;margin:0}
+.lbl{display:grid;grid-template-columns:5.2rem 1fr;gap:.15rem .8rem;margin:0;font-size:.88rem}
+.lbl dt{font:400 .75rem/1.75 var(--mono);color:var(--muted)}
+.lbl dd{margin:0}
+.info p{margin:0}
+.info .sum{font-size:.98rem}
+.info details{border-top:1px solid var(--line);padding-top:.8rem}
+.info summary{cursor:pointer;font:400 .8rem/1.5 var(--mono);color:var(--muted);list-style:none}
+.info summary::-webkit-details-marker{display:none}
+.info summary::before{content:"+ "}
+.info details[open] summary::before{content:"\2212 "}
+.info details p{margin:.8rem 0 0;font-size:.92rem}
+.info .src{font:400 .72rem/1.5 var(--mono);color:var(--muted)}
+.info .coda{padding-left:.9rem;border-left:1px solid var(--ink);font-style:italic}
+.info .coda p{margin:0}
+.shown{margin:0;padding:0;list-style:none;font-size:.85rem}
+.shown li{display:grid;grid-template-columns:2.8rem 1fr;gap:.6rem;padding-block:.4rem;border-top:1px solid var(--line)}
+.shown li span:first-child{font:400 .75rem/1.7 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.sub{font:400 .75rem/1.4 var(--mono);color:var(--muted);margin:0 0 .3rem}
+.vlink{display:inline-flex;gap:.5rem;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:.1rem;width:max-content;max-width:100%}
+.vlink:hover{color:var(--mark);border-color:var(--mark)}
+.note{color:var(--muted);font-size:.85rem}
+.note a{border-bottom:1px solid var(--line)}
+.request{font:400 .78rem/1.5 var(--mono);color:var(--mark)}
+.plates{display:grid;gap:1.6rem;min-width:0}
+.plates figure{margin:0;display:grid;gap:.4rem;min-width:0}
+.plates img{width:100%;height:auto;background:var(--hl)}
+.plates figcaption{font:400 .72rem/1.4 var(--mono);color:var(--muted)}
+.plates .v{position:relative;display:block}
+.plates .v span{position:absolute;left:.8rem;bottom:.8rem;background:var(--bg);color:var(--ink);font:400 .75rem/1 var(--mono);padding:.55rem .7rem}
+.empty{border:1px solid var(--line);aspect-ratio:4/3;display:grid;place-items:center;color:var(--muted);font:400 .78rem/1.4 var(--mono);text-align:center;padding:1rem}
+.pager{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:4rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+.pager a:hover{color:var(--ink)}
+.page{max-width:40rem;margin-top:2.5rem}
+.page h1{font:500 1.6rem/1.2 var(--sans);margin:0 0 1.6rem}
+.page h2{font:400 .78rem/1.4 var(--mono);color:var(--muted);margin:2.6rem 0 .7rem;padding-bottom:.4rem;border-bottom:1px solid var(--line)}
+.page p{margin:0 0 .9rem}
+.page .lead{font-style:italic}
+.cv p{margin:0 0 .45rem;font-size:.92rem;display:grid;grid-template-columns:5.8rem 1fr;gap:.8rem}
+.cv p.plain{display:block}
+.cv h3{font:400 .82rem/1.4 var(--mono);margin:1.3rem 0 .35rem;font-variant-numeric:tabular-nums}
+.cv .yr{font:400 .78rem/1.7 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.todo{background:#d6372b;color:#fff;padding:.05em .35em;font:500 .8rem/1.4 var(--mono)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div class="wrap"><header class="head"><a class="name" href="index.html">Ira Tsykhanskaya</a><nav class="nav" aria-label="Main"><a href="index.html">Works</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="about.html#contact">Contact</a></nav></header>
+<main class="work"><div class="info"><h1>Occupy</h1><dl class="lbl"><dt>Year</dt><dd>2011</dd><dt>Medium</dt><dd>Video performance</dd><dt>With</dt><dd>with Nastya Kuzmina</dd></dl><p class="sum">The everyday appropriation of public space and the normalized violence embedded in it. On a resort beach, personal belongings replace the body, marking territory before anyone is physically present.</p><details><summary>Text</summary><p>The video performance <em>Occupy</em>, created by me in collaboration with Nastya Kuzmina, examines everyday mechanisms of appropriating public space and the forms of violence that become embedded in them as a norm. A resort beach, formally accessible to everyone, turns in the summer season into a field of informal division, where personal belongings and textiles function as tools of occupation and control.</p><p>In this work, I model this behavioral pattern, shifting attention from outcome to process. The placement of fabrics on the pebbles marks the moment when space is already considered occupied, even in the absence of a body. The void between objects ceases to be neutral and begins to operate as a zone of exclusion, where boundaries are not legally defined but are rigidly maintained through collective consent.</p><p>The work is grounded in the tension between visibility and absence, between bodily presence and its trace. The body is not treated as an image, but as a potentiality already captured by structures of control and power. Personal experience of leisure and vulnerable bodily existence is absorbed into systems of normalization in which the appropriation of space is naturalized and no longer requires justification.</p><p><em>Occupy</em> exposes the conflict between the idea of the public and everyday practices of use. Any attempt to cross or redistribute such space provokes resistance and aggression, revealing the fragility of collective agreements. I treat the minimal gesture as political, and vulnerability and exposure as analytical tools that make it possible to trace how control, exclusion, and responsibility are reproduced in the most ordinary situations.</p></details></div><div class="plates"><figure><img src="img/occupy-1.jpg" alt="Video still" loading="lazy"><figcaption>Video still</figcaption></figure></div></main>
+<nav class="pager" aria-label="More works"><a href="new-moscow.html">&larr; New Moscow</a><a href="index.html">All works</a><a href="potato-skin.html">Potato Skin &rarr;</a></nav>
+<footer class="foot"><span>&copy; Ira Tsykhanskaya 2026</span><span><a href="impressum.html">Impressum</a>&ensp;//&ensp;<a href="datenschutz.html">Datenschutz</a></span></footer></div></body></html>

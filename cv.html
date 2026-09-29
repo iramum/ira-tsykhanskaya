@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>CV // Ira Tsykhanskaya</title><meta name="description" content="Curriculum vitae"><link rel="stylesheet" href="fonts.css"><style>
+/* Layout: an exhibition checklist. One ruled table of works; work pages keep the label on the left and let images run on the right. */
+:root{
+  --bg:#f6f6f3; --ink:#141413; --muted:#7c7b75; --line:rgba(20,20,19,.13); --hl:#ebebe6; --mark:#7a6552;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --gutter:clamp(16px,3.2vw,40px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121211;--ink:#e8e7e2;--muted:#8e8d86;--line:rgba(232,231,226,.14);--hl:#1d1d1b;--mark:#b89f88;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121211;--ink:#e8e7e2;--muted:#8e8d86;--line:rgba(232,231,226,.14);--hl:#1d1d1b;--mark:#b89f88;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
+img{max-width:100%;height:auto;display:block}
+.wrap{padding-inline:var(--gutter);max-width:90rem;margin-inline:auto}
+.head{display:flex;flex-wrap:wrap;gap:.4rem 2rem;justify-content:space-between;align-items:baseline;padding-block:1.5rem 1.2rem}
+.name{font-weight:500}
+.nav{display:flex;flex-wrap:wrap;gap:.2rem 1.5rem;color:var(--muted)}
+.nav a:hover,.nav a[aria-current]{color:var(--ink)}
+.foot{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;justify-content:space-between;padding-block:3rem 3rem;margin-top:6rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+.foot a:hover{color:var(--ink)}
+.lede{max-width:38rem;color:var(--muted);margin:2.5rem 0 3rem}
+.lede b{color:var(--ink);font-weight:400}
+.filters{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;margin-bottom:.6rem;font:400 .8rem/1.5 var(--mono);color:var(--muted)}
+.filters button{all:unset;cursor:pointer}
+.filters button[aria-pressed=true]{color:var(--ink);text-decoration:underline;text-underline-offset:.25em}
+.filters .count{margin-left:auto}
+.list{width:100%;border-collapse:collapse}
+.list td{min-width:0;overflow-wrap:anywhere}
+.list th{font:400 .75rem/1.4 var(--mono);color:var(--muted);text-align:left;padding:.5rem .8rem .5rem 0;border-bottom:1px solid var(--ink)}
+.list td{padding:.62rem .8rem .62rem 0;border-bottom:1px solid var(--line);vertical-align:top}
+.list tr.has td{cursor:pointer}
+.list tr.has:hover td{background:var(--hl)}
+.list td.y{font:400 .8rem/1.9 var(--mono);font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap;width:6.5rem}
+.list td.t a{font-weight:500}
+.list td.t .w{display:block;color:var(--muted);font-size:.85rem;font-weight:400}
+.list tr:not(.has) td.t{font-weight:500}
+.list td.m,.list td.v{color:var(--muted);font-size:.9rem}
+.list td.go{width:1.5rem;text-align:right;color:var(--mark)}
+.peek{position:fixed;right:var(--gutter);bottom:var(--gutter);width:min(26vw,360px);pointer-events:none;opacity:0;transition:opacity .15s}
+.peek.on{opacity:1}
+.peek img{width:100%;aspect-ratio:4/3;object-fit:cover}
+@media (max-width:760px){
+  .list,.list tbody{display:block}
+  .list thead{display:none}
+  .list tr{display:grid;grid-template-columns:4.6rem 1fr 1rem;padding-block:.7rem;border-bottom:1px solid var(--line)}
+  .list td{border:0;padding:0}
+  .list td.m,.list td.v{grid-column:2;font-size:.85rem}
+  .list td.go{grid-column:3;grid-row:1}
+  .peek{display:none}
+}
+@media (hover:none){.peek{display:none}}
+.work{display:grid;grid-template-columns:minmax(0,24rem) minmax(0,1fr);gap:2.5rem 4rem;align-items:start;margin-top:2.5rem}
+@media (max-width:900px){.work{grid-template-columns:minmax(0,1fr)}}
+.info{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1.2rem);display:grid;gap:1.3rem;min-width:0}
+@media (max-width:900px){.info{position:static}}
+.info h1{font:500 1.6rem/1.2 var(--sans);text-wrap:balance;margin:0}
+.lbl{display:grid;grid-template-columns:5.2rem 1fr;gap:.15rem .8rem;margin:0;font-size:.88rem}
+.lbl dt{font:400 .75rem/1.75 var(--mono);color:var(--muted)}
+.lbl dd{margin:0}
+.info p{margin:0}
+.info .sum{font-size:.98rem}
+.info details{border-top:1px solid var(--line);padding-top:.8rem}
+.info summary{cursor:pointer;font:400 .8rem/1.5 var(--mono);color:var(--muted);list-style:none}
+.info summary::-webkit-details-marker{display:none}
+.info summary::before{content:"+ "}
+.info details[open] summary::before{content:"\2212 "}
+.info details p{margin:.8rem 0 0;font-size:.92rem}
+.info .src{font:400 .72rem/1.5 var(--mono);color:var(--muted)}
+.info .coda{padding-left:.9rem;border-left:1px solid var(--ink);font-style:italic}
+.info .coda p{margin:0}
+.shown{margin:0;padding:0;list-style:none;font-size:.85rem}
+.shown li{display:grid;grid-template-columns:2.8rem 1fr;gap:.6rem;padding-block:.4rem;border-top:1px solid var(--line)}
+.shown li span:first-child{font:400 .75rem/1.7 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.sub{font:400 .75rem/1.4 var(--mono);color:var(--muted);margin:0 0 .3rem}
+.vlink{display:inline-flex;gap:.5rem;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:.1rem;width:max-content;max-width:100%}
+.vlink:hover{color:var(--mark);border-color:var(--mark)}
+.note{color:var(--muted);font-size:.85rem}
+.note a{border-bottom:1px solid var(--line)}
+.request{font:400 .78rem/1.5 var(--mono);color:var(--mark)}
+.plates{display:grid;gap:1.6rem;min-width:0}
+.plates figure{margin:0;display:grid;gap:.4rem;min-width:0}
+.plates img{width:100%;height:auto;background:var(--hl)}
+.plates figcaption{font:400 .72rem/1.4 var(--mono);color:var(--muted)}
+.plates .v{position:relative;display:block}
+.plates .v span{position:absolute;left:.8rem;bottom:.8rem;background:var(--bg);color:var(--ink);font:400 .75rem/1 var(--mono);padding:.55rem .7rem}
+.empty{border:1px solid var(--line);aspect-ratio:4/3;display:grid;place-items:center;color:var(--muted);font:400 .78rem/1.4 var(--mono);text-align:center;padding:1rem}
+.pager{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:4rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+.pager a:hover{color:var(--ink)}
+.page{max-width:40rem;margin-top:2.5rem}
+.page h1{font:500 1.6rem/1.2 var(--sans);margin:0 0 1.6rem}
+.page h2{font:400 .78rem/1.4 var(--mono);color:var(--muted);margin:2.6rem 0 .7rem;padding-bottom:.4rem;border-bottom:1px solid var(--line)}
+.page p{margin:0 0 .9rem}
+.page .lead{font-style:italic}
+.cv p{margin:0 0 .45rem;font-size:.92rem;display:grid;grid-template-columns:5.8rem 1fr;gap:.8rem}
+.cv p.plain{display:block}
+.cv h3{font:400 .82rem/1.4 var(--mono);margin:1.3rem 0 .35rem;font-variant-numeric:tabular-nums}
+.cv .yr{font:400 .78rem/1.7 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.todo{background:#d6372b;color:#fff;padding:.05em .35em;font:500 .8rem/1.4 var(--mono)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div class="wrap"><header class="head"><a class="name" href="index.html">Ira Tsykhanskaya</a><nav class="nav" aria-label="Main"><a href="index.html">Works</a><a href="about.html">About</a><a href="cv.html" aria-current=page>CV</a><a href="about.html#contact">Contact</a></nav></header>
+<main class="page cv"><h1>CV</h1>
+<p class="plain">Born 1985, Moscow. Lives and works in Cologne, Germany, since November 2024.</p>
+<p class="plain">Video and mixed-media artist.</p>
+<h2>Education</h2>
+<p><span class="yr">2011–2015</span><span>Moscow School of Photography and Multimedia n. a. Alexander Rodchenko — Video Art</span></p>
+<p><span class="yr">2008–2009</span><span>Central Saint Martins, University of the Arts London — Foundation, Video and Photography</span></p>
+<p><span class="yr">2002–2008</span><span>National Research University Higher School of Economics, Moscow — Economics</span></p>
+<h2>Selected Exhibitions</h2>
+<h3>2025</h3>
+<p class="plain"><em>Nachbild der Leere / Afterimage of Emptiness</em>, EmpireZeroOne, Cologne. Organised by Experimental Field — performance <em>Potato Skin</em> and video <em>Kolobok</em></p>
+<p class="plain"><em>Potato Skin</em> <em>(German title: Schalen)</em>, durational performance, EmpireZeroOne, Cologne, and Ostavinska, Belgrade. Organised by Experimental Field</p>
+<h3>2024</h3>
+<p class="plain"><em>May the journey make us happy</em>, Galerie EmpireZeroOne, Cologne — <em>I Thought I Was Baking</em>, video and objects, 2024 <em>(second version of</em> The Base / Fundament<em>, 2014)</em></p>
+<p class="plain"><em>Katun</em> — residency and exhibition, Experimental Field, Sutomore, Montenegro — installation <em>Polyana / Clearing</em> and video <em>The Possessed</em> <em>(2024 short version, 5:20)</em></p>
+<h3>2023</h3>
+<p class="plain"><em>Tropy / Paths</em> — residency and exhibition, Experimental Field, Montenegro — installation <em>Khrupko / Fragile</em></p>
+<h3>2021</h3>
+<p class="plain"><em>Assuming Distance: Speculations, Fakes and Predictions in the Age of the Coronacene</em>, 24 March – 26 August 2021, Garage Museum of Contemporary Art, Moscow — with the self-organised group ShShSh, work <em>I Do Understand You But Cannot Speak</em> (2020–2021), non-VR game, two horizontal plasma screens, laser-engraved acrylic, epoxy floor as an RPG map</p>
+<h3>2020</h3>
+<p class="plain"><em>Feast</em> — project <em>The Support Group Art Platform</em>, 12 September – 11 October 2020, CUBE.Moscow and Biennale for Young Art, Moscow — with ShShSh; includes the action <em>The Feast</em>, 7 September 2020, O2 Lounge, Ritz-Carlton</p>
+<p class="plain"><em>Body Horror</em> — online performance, 16 May 2020, National Centre for Contemporary Arts (NCCA), Yekaterinburg — programme <em>Digital Sensitivity</em> and virtual exhibition <em>Love You, Internet</em>, with ShShSh</p>
+<p class="plain"><em>Vulnerability / Stability / Now</em> — online session, 19 April 2020, <em>Quarantine #6</em>, syg.ma — with ShShSh</p>
+<h3>2019</h3>
+<p class="plain"><em>"This Is the Beginning", or Virtual Genius</em> — finalists of the 7th Nova Art Contest (350+ applications), New Holland Island, St Petersburg — project <em>Pearl</em> with Anastasia Alekhina <em>(featured in New East Digital Archive, 17.12.2020)</em></p>
+<p class="plain"><em>Communities and Spaces</em> — open project and presentation of the ShShSh catalogue, 14 June – 21 July 2019, Winzavod, Moscow</p>
+<h3>2018</h3>
+<p class="plain"><em>ShShSh Experiences</em> — laboratory of eight experiments, 23 September – 31 December 2018, Centre for Creative Industries Fabrika, Moscow — Ira Tsykhanskaya: Experiment No. 0 (with Vika Chupakhina) and No. 7 <em>Pearl</em> (with Anastasia Alekhina)</p>
+<p class="plain"><em>Experiment No. 0. Laboratory of Genetic Correction and Mental Crossing</em>, A. Povzner's studio, Armyansky Lane 13, Moscow — with Viktoria Chupakhina, founding project of ShShSh</p>
+<p class="plain"><em>Migration / Internally Displaced</em>, Experimental Field, Balashikha, 9–10 June — large-scale installation <em>Loop</em> (with Nastya Kuzmina)</p>
+<p class="plain"><em>Udalyonno / Remote</em> — online exhibition, live broadcast 01.03.2018, Experimental Field, Balashikha — object <em>Error</em></p>
+<h3>2017</h3>
+<p class="plain"><em>Podzabornaya / Under the Fence</em>, Experimental Field, Balashikha — objects <em>Baroque Fence</em></p>
+<h3>2016</h3>
+<p class="plain"><em>Forest / LES</em> — Exhibition No. 1, 03.12.2016, Experimental Field, Balashikha — installation <em>Ur-Man</em> (with Grisha Mumrikov)</p>
+<h3>2015</h3>
+<p class="plain"><em>Poetic Feelings</em>, Moscow Museum of Modern Art (MMOMA), Moscow — video <em>Kolobok</em></p>
+<p class="plain"><em>What to Say If There Is Nothing to Say</em> — Rodchenko Art School graduation exhibition 2015, Udarnik, Moscow. Multimedia Art Museum // Rodchenko Art School // Breus Foundation — diploma work <em>The Possessed</em></p>
+<h3>2014</h3>
+<p class="plain"><em>Modus Operandi</em>, National Centre for Contemporary Arts (NCCA), Moscow — video <em>The Base / Fundament</em></p>
+<p class="plain"><em>Rustling of Angels</em>, curated by Petr Zhukov, Rostokino Exhibition Hall (Electromuseum), Moscow — video <em>Kolobok</em></p>
+<p class="plain"><em>Metageography: Space and Art</em>, 28 August – 21 September, part of Chernozem Contemporary Art Festival 2014, curated by Dmitry Zamyatin and Nikolay Smirnov, I. N. Kramskoy Museum of Fine Arts, Voronezh — video <em>Kolobok</em></p>
+<p class="plain"><em>One of Us / Svoy sredi chuzhikh</em>, Arka Gallery, Vladivostok — <em>Prianik / Gingerbread</em></p>
+<h3>2013</h3>
+<p class="plain"><em>Student Art Prom</em>, Artplay, Moscow — installation <em>Bezmannost</em> (with L. Artemenko and N. Kuzmina)</p>
+<p class="plain"><em>Nothing of the Kind</em>, special project of the 5th Moscow Biennale of Contemporary Art, curated by Vladimir Logutov, Museum of Moscow — object <em>Reconstruction</em></p>
+<p class="plain"><em>Nothing of the Kind</em>, Victoria Gallery, Samara — object <em>Reconstruction</em></p>
+<p class="plain"><em>MMXIII</em>, Elektrozavod Gallery, Moscow — 2013–2014</p>
+<p class="plain"><em>Why Do We Go to Exhibitions</em>, curated by Vladimir Logutov, Multimedia Art Museum, Moscow. Vladimir Smirnov and Konstantin Sorokin Foundation — object <em>Reconstruction</em>, fabric and epoxy resin</p>
+<p class="plain"><em>24 RU/NL. The One Minutes</em>, Garage Museum of Contemporary Art, Moscow — Russian–Dutch programme, 27 directors — video <em>Kolobok</em></p>
+<p class="plain"><em>Dali (Distances)</em>, curated by Lyudmila Zinchenko, CTI Factory, Moscow — large-scale installation <em>Loop</em> (with Nastya Kuzmina)</p>
+<p class="plain"><em>What Is Behind This Curtain?</em>, curated by Kirill Preobrazhensky, Random Gallery, Moscow — video <em>Poetry of New Moscow</em> and objects</p>
+<p class="plain"><em>Code of the Era</em> festival, All-Russian Museum of Decorative and Folk Art, Moscow — <em>New Moscow</em>, video and objects</p>
+<h2>Festivals And Screenings</h2>
+<p><span class="yr">2024</span><span>Metakansk — International Competition Programme — <em>Flame</em>, 6:50 <em>(shown as "The Eternal Flame")</em></span></p>
+<p><span class="yr">2019</span><span>A-real Video Festival, 8 September (Moscow) and 14 December (St Petersburg) — with ShShSh</span></p>
+<p><span class="yr">2018</span><span>A-real Video Festival**, Elektromuseum, Moscow, 8–9 September — <em>The Base / Fundament</em> (part 1) and <em>Prianik / Gingerbread</em> (part 2)</span></p>
+<p><span class="yr">2017</span><span>Strangelove Time-based Media Festival, 9–24 March, Folkestone, UK — <em>Honey Bread / Prianik</em> and <em>The Possessed</em></span></p>
+<p><span class="yr">2017</span><span><em>All the World's a Display II</em>, Veinti4/Siete Galería, San José, Costa Rica — <em>Poetry New Moscow</em>, curated by Liudmila Kirsanova</span></p>
+<p><span class="yr">2016</span><span>XV International Kansk Video Festival, Moscow edition — exhibition <em>UTITLEology</em>, curated by Vika Chupakhina — <em>Flame</em> <em>(shown as "Vechny ogon / The Eternal Flame")</em></span></p>
+<p><span class="yr">2016</span><span><em>Antimuseum</em>, Elektromuseum (Rostokino Exhibition Hall), Moscow — <em>The Possessed</em></span></p>
+<p><span class="yr">2016</span><span><em>Afisha Picnic</em> — <em>Antimuseum</em> programme by Elektromuseum, Moscow — <em>The Possessed</em></span></p>
+<p><span class="yr">2015</span><span>XIV International Kansk Video Festival, main competition, Kansk — <em>The Possessed</em></span></p>
+<p><span class="yr">2015</span><span>Now & After'15, International Video Art Festival, curated by Marina Fomenko, Shchusev State Museum of Architecture, Moscow — <em>New Moscow</em></span></p>
+<p><span class="yr">2014</span><span>36th Moscow International Film Festival — Cine Fantom programme — <em>Prianik / Gingerbread</em>, 2013</span></p>
+<p><span class="yr">2014</span><span>XIII International Kansk Video Festival, Kansk — <em>Prianik / Gingerbread</em></span></p>
+<p><span class="yr">2014</span><span>Extra Short Film Festival (ESF), Multimedia Art Museum, Moscow — <em>Kolobok</em></span></p>
+<p><span class="yr">2013</span><span><em>Hopscotch Media Night</em>, Anna Akhmatova Museum, St Petersburg — <em>Prianik / Gingerbread</em></span></p>
+<h2>Film</h2>
+<p class="plain"><em>Prianik / Gingerbread</em>, 2013, fiction, 7 min — director, actress, camera, art direction</p>
+<p class="plain"><em>Unheimat</em>, 2014, fiction, 12 min, dir. Mikhail Maximov — actress</p>
+<h2>Collective Practice</h2>
+<p class="plain">Co-founder, Experimental Field, artist-run platform, since 2016 — Moscow 2016–2019, Montenegro and Serbia 2023–2024, Cologne since 2024</p>
+<p class="plain">Co-founder and organiser, ShShSh, self-organised group of women artists, Moscow, 2018–2022 (on hiatus since 2022)</p>
+<p><span class="yr">2024</span><span>curator of the laboratory, Metakansk, Belgrade</span></p>
+<h2>Curating</h2>
+<p><span class="yr">2024</span><span>Curator of the laboratory, Metakansk, Belgrade</span></p>
+<p><span class="yr">2019</span><span>Co-curator (with Vika Chupakhina), <em>A-real</em> Video Festival, 8 September — Elektromuseum and Rostokino Aqueduct Park, Moscow. Theme: ecofeminism. With ShShSh</span></p>
+<p><span class="yr">2019</span><span>Co-curator (with Vika Chupakhina), <em>A-real</em> Video Festival, 14 December 2019 — 4413 Gallery, St Petersburg. With ShShSh</span></p>
+<p><span class="yr">2018</span><span>Co-curator (with Vika Chupakhina), <em>A-real</em> Video Festival, 8–9 September — Elektromuseum, Moscow. Theme: territory and space. With Experimental Field</span></p>
+<h2>Teaching</h2>
+<p><span class="yr">2017–2018</span><span>Tutor, animation course for children <em>In the Artist's Workshop</em>, Multimedia Art Museum, Moscow — 8 sessions, linked to the museum's current exhibition</span></p>
+<h2>Publications And Archives</h2>
+<p><span class="yr">2020</span><span><em>"After the End there will be Glitter"</em> — artist's text by ShShSh, Moscow Art Magazine no. 113 «What Comes After the End?», pp. 164–166; named among the fourteen contributors</span></p>
+<p class="plain"><em>Opyty ShShSh</em>, zine, 2019 — Garage Museum Library, cat. L42783</p>
+<p class="plain">Artist record, Russian Art Archive Network, Garage Museum of Contemporary Art</p>
+</main>
+<footer class="foot"><span>&copy; Ira Tsykhanskaya 2026</span><span><a href="impressum.html">Impressum</a>&ensp;//&ensp;<a href="datenschutz.html">Datenschutz</a></span></footer></div></body></html>

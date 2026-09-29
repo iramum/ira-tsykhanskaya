@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Ira Tsykhanskaya</title><meta name="description" content="Video and mixed media artist working with performative and process-based formats."><link rel="stylesheet" href="fonts.css"><style>
+/* Layout: an exhibition checklist. One ruled table of works; work pages keep the label on the left and let images run on the right. */
+:root{
+  --bg:#f6f6f3; --ink:#141413; --muted:#7c7b75; --line:rgba(20,20,19,.13); --hl:#ebebe6; --mark:#7a6552;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --gutter:clamp(16px,3.2vw,40px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121211;--ink:#e8e7e2;--muted:#8e8d86;--line:rgba(232,231,226,.14);--hl:#1d1d1b;--mark:#b89f88;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121211;--ink:#e8e7e2;--muted:#8e8d86;--line:rgba(232,231,226,.14);--hl:#1d1d1b;--mark:#b89f88;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
+img{max-width:100%;height:auto;display:block}
+.wrap{padding-inline:var(--gutter);max-width:90rem;margin-inline:auto}
+.head{display:flex;flex-wrap:wrap;gap:.4rem 2rem;justify-content:space-between;align-items:baseline;padding-block:1.5rem 1.2rem}
+.name{font-weight:500}
+.nav{display:flex;flex-wrap:wrap;gap:.2rem 1.5rem;color:var(--muted)}
+.nav a:hover,.nav a[aria-current]{color:var(--ink)}
+.foot{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;justify-content:space-between;padding-block:3rem 3rem;margin-top:6rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+.foot a:hover{color:var(--ink)}
+.lede{max-width:38rem;color:var(--muted);margin:2.5rem 0 3rem}
+.lede b{color:var(--ink);font-weight:400}
+.filters{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;margin-bottom:.6rem;font:400 .8rem/1.5 var(--mono);color:var(--muted)}
+.filters button{all:unset;cursor:pointer}
+.filters button[aria-pressed=true]{color:var(--ink);text-decoration:underline;text-underline-offset:.25em}
+.filters .count{margin-left:auto}
+.list{width:100%;border-collapse:collapse}
+.list td{min-width:0;overflow-wrap:anywhere}
+.list th{font:400 .75rem/1.4 var(--mono);color:var(--muted);text-align:left;padding:.5rem .8rem .5rem 0;border-bottom:1px solid var(--ink)}
+.list td{padding:.62rem .8rem .62rem 0;border-bottom:1px solid var(--line);vertical-align:top}
+.list tr.has td{cursor:pointer}
+.list tr.has:hover td{background:var(--hl)}
+.list td.y{font:400 .8rem/1.9 var(--mono);font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap;width:6.5rem}
+.list td.t a{font-weight:500}
+.list td.t .w{display:block;color:var(--muted);font-size:.85rem;font-weight:400}
+.list tr:not(.has) td.t{font-weight:500}
+.list td.m,.list td.v{color:var(--muted);font-size:.9rem}
+.list td.go{width:1.5rem;text-align:right;color:var(--mark)}
+.peek{position:fixed;right:var(--gutter);bottom:var(--gutter);width:min(26vw,360px);pointer-events:none;opacity:0;transition:opacity .15s}
+.peek.on{opacity:1}
+.peek img{width:100%;aspect-ratio:4/3;object-fit:cover}
+@media (max-width:760px){
+  .list,.list tbody{display:block}
+  .list thead{display:none}
+  .list tr{display:grid;grid-template-columns:4.6rem 1fr 1rem;padding-block:.7rem;border-bottom:1px solid var(--line)}
+  .list td{border:0;padding:0}
+  .list td.m,.list td.v{grid-column:2;font-size:.85rem}
+  .list td.go{grid-column:3;grid-row:1}
+  .peek{display:none}
+}
+@media (hover:none){.peek{display:none}}
+.work{display:grid;grid-template-columns:minmax(0,24rem) minmax(0,1fr);gap:2.5rem 4rem;align-items:start;margin-top:2.5rem}
+@media (max-width:900px){.work{grid-template-columns:minmax(0,1fr)}}
+.info{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1.2rem);display:grid;gap:1.3rem;min-width:0}
+@media (max-width:900px){.info{position:static}}
+.info h1{font:500 1.6rem/1.2 var(--sans);text-wrap:balance;margin:0}
+.lbl{display:grid;grid-template-columns:5.2rem 1fr;gap:.15rem .8rem;margin:0;font-size:.88rem}
+.lbl dt{font:400 .75rem/1.75 var(--mono);color:var(--muted)}
+.lbl dd{margin:0}
+.info p{margin:0}
+.info .sum{font-size:.98rem}
+.info details{border-top:1px solid var(--line);padding-top:.8rem}
+.info summary{cursor:pointer;font:400 .8rem/1.5 var(--mono);color:var(--muted);list-style:none}
+.info summary::-webkit-details-marker{display:none}
+.info summary::before{content:"+ "}
+.info details[open] summary::before{content:"\2212 "}
+.info details p{margin:.8rem 0 0;font-size:.92rem}
+.info .src{font:400 .72rem/1.5 var(--mono);color:var(--muted)}
+.info .coda{padding-left:.9rem;border-left:1px solid var(--ink);font-style:italic}
+.info .coda p{margin:0}
+.shown{margin:0;padding:0;list-style:none;font-size:.85rem}
+.shown li{display:grid;grid-template-columns:2.8rem 1fr;gap:.6rem;padding-block:.4rem;border-top:1px solid var(--line)}
+.shown li span:first-child{font:400 .75rem/1.7 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.sub{font:400 .75rem/1.4 var(--mono);color:var(--muted);margin:0 0 .3rem}
+.vlink{display:inline-flex;gap:.5rem;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:.1rem;width:max-content;max-width:100%}
+.vlink:hover{color:var(--mark);border-color:var(--mark)}
+.note{color:var(--muted);font-size:.85rem}
+.note a{border-bottom:1px solid var(--line)}
+.request{font:400 .78rem/1.5 var(--mono);color:var(--mark)}
+.plates{display:grid;gap:1.6rem;min-width:0}
+.plates figure{margin:0;display:grid;gap:.4rem;min-width:0}
+.plates img{width:100%;height:auto;background:var(--hl)}
+.plates figcaption{font:400 .72rem/1.4 var(--mono);color:var(--muted)}
+.plates .v{position:relative;display:block}
+.plates .v span{position:absolute;left:.8rem;bottom:.8rem;background:var(--bg);color:var(--ink);font:400 .75rem/1 var(--mono);padding:.55rem .7rem}
+.empty{border:1px solid var(--line);aspect-ratio:4/3;display:grid;place-items:center;color:var(--muted);font:400 .78rem/1.4 var(--mono);text-align:center;padding:1rem}
+.pager{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:4rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.88rem;color:var(--muted)}
+.pager a:hover{color:var(--ink)}
+.page{max-width:40rem;margin-top:2.5rem}
+.page h1{font:500 1.6rem/1.2 var(--sans);margin:0 0 1.6rem}
+.page h2{font:400 .78rem/1.4 var(--mono);color:var(--muted);margin:2.6rem 0 .7rem;padding-bottom:.4rem;border-bottom:1px solid var(--line)}
+.page p{margin:0 0 .9rem}
+.page .lead{font-style:italic}
+.cv p{margin:0 0 .45rem;font-size:.92rem;display:grid;grid-template-columns:5.8rem 1fr;gap:.8rem}
+.cv p.plain{display:block}
+.cv h3{font:400 .82rem/1.4 var(--mono);margin:1.3rem 0 .35rem;font-variant-numeric:tabular-nums}
+.cv .yr{font:400 .78rem/1.7 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.todo{background:#d6372b;color:#fff;padding:.05em .35em;font:500 .8rem/1.4 var(--mono)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div class="wrap"><header class="head"><a class="name" href="index.html">Ira Tsykhanskaya</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current=page>Works</a><a href="about.html">About</a><a href="cv.html">CV</a><a href="about.html#contact">Contact</a></nav></header>
+<p class="lede"><b>Video and mixed media artist working with performative and process-based formats.</b> Born 1985, Moscow. Lives and works in Cologne, Germany, since November 2024.</p>
+<div class="filters" role="group" aria-label="Filter works"><button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="solo" aria-pressed="false">Solo</button><button type="button" data-f="collab" aria-pressed="false">Collaborations</button><button type="button" data-f="collective" aria-pressed="false">ShShSh collective</button><span class="count" id="count">22 works</span></div>
+<table class="list"><thead><tr><th>Year</th><th>Work</th><th>Medium</th><th>Shown</th><th></th></tr></thead><tbody>
+<tr class="has" data-href="potato-skin.html" data-tags="solo" data-img="img/potato-skin-1.jpg"><td class="y">2025</td><td class="t"><a href="potato-skin.html">Potato Skin</a></td><td class="m">Durational performance</td><td class="v">EmpireZeroOne, Cologne // Ostavinska, Belgrade</td><td class="go">&rarr;</td></tr>
+<tr class="has" data-href="i-thought-i-was-baking.html" data-tags="solo" data-img="img/baking-1.jpg"><td class="y">2024</td><td class="t"><a href="i-thought-i-was-baking.html">I Thought I Was Baking</a></td><td class="m">Video and objects</td><td class="v">Galerie EmpireZeroOne, Cologne</td><td class="go">&rarr;</td></tr>
+<tr data-tags="solo"><td class="y">2024</td><td class="t">Polyana / Clearing</td><td class="m">Installation</td><td class="v"><em>Katun</em>, Experimental Field, Sutomore, Montenegro</td><td class="go"></td></tr>
+<tr data-tags="solo"><td class="y">2023</td><td class="t">Khrupko / Fragile</td><td class="m">Installation, birch trunks stamped FRAGILE</td><td class="v"><em>Tropy / Paths</em>, Experimental Field, Montenegro</td><td class="go"></td></tr>
+<tr class="has" data-href="the-body-horror.html" data-tags="collective" data-img="img/body-horror-1.jpg"><td class="y">2020</td><td class="t"><a href="the-body-horror.html">The Body Horror</a><span class="w">ShShSh collective</span></td><td class="m">Online performance</td><td class="v">NCCA, Yekaterinburg</td><td class="go">&rarr;</td></tr>
+<tr class="has" data-href="i-do-understand-you.html" data-tags="collective"><td class="y">2020–2021</td><td class="t"><a href="i-do-understand-you.html">I Do Understand You But Cannot Speak</a><span class="w">ShShSh collective</span></td><td class="m">Non-VR game, plasma screens, laser-engraved acrylic, epoxy floor</td><td class="v">Garage Museum of Contemporary Art, Moscow</td><td class="go">&rarr;</td></tr>
+<tr data-tags="collective"><td class="y">2020</td><td class="t">Feast<span class="w">ShShSh collective</span></td><td class="m">Action and installation</td><td class="v">CUBE.Moscow // Biennale for Young Art</td><td class="go"></td></tr>
+<tr data-tags="collective"><td class="y">2020</td><td class="t"><a href="https://youtu.be/2CM5p6mtVLM" target="_blank" rel="noopener">Vulnerability / Stability / Now</a><span class="w">ShShSh collective</span></td><td class="m">Online desktop jam, 1:02:23</td><td class="v">Quarantine #6, syg.ma</td><td class="go">&nearr;</td></tr>
+<tr class="has" data-href="lab-of-genetic-correction.html" data-tags="collab collective" data-img="img/lab-1.jpg"><td class="y">2018</td><td class="t"><a href="lab-of-genetic-correction.html">Lab of Genetic Correction and Mental Hybridization</a><span class="w">with Viktoriya Chupakhina // ShShSh, Practice 0</span></td><td class="m">Installation, drawings, objects</td><td class="v">A. Povzner's Workshop, Moscow</td><td class="go">&rarr;</td></tr>
+<tr class="has" data-href="pearl.html" data-tags="collab"><td class="y">2018–2019</td><td class="t"><a href="pearl.html">Pearl</a><span class="w">with Anastasia Alekhina</span></td><td class="m">Interdisciplinary project</td><td class="v">7th Nova Art Contest, finalists, New Holland Island, St Petersburg</td><td class="go">&rarr;</td></tr>
+<tr data-tags="solo"><td class="y">2018</td><td class="t">Error</td><td class="m">Object in the forest</td><td class="v"><em>Udalyonno / Remote</em>, online exhibition, Experimental Field</td><td class="go"></td></tr>
+<tr data-tags="solo"><td class="y">2017</td><td class="t">Baroque Fence</td><td class="m">Objects</td><td class="v"><em>Podzabornaya / Under the Wall</em>, Experimental Field, Balashikha</td><td class="go"></td></tr>
+<tr class="has" data-href="flame.html" data-tags="solo"><td class="y">2016 / 2024</td><td class="t"><a href="flame.html">Flame</a></td><td class="m">Video</td><td class="v">Metakansk // XV Kansk Video Festival</td><td class="go">&rarr;</td></tr>
+<tr data-tags="collab"><td class="y">2016</td><td class="t">Ur-Man<span class="w">with Grisha Mumrikov</span></td><td class="m">Installation</td><td class="v"><em>Forest / LES</em>, Experimental Field, Balashikha</td><td class="go"></td></tr>
+<tr class="has" data-href="the-possessed.html" data-tags="solo"><td class="y">2015</td><td class="t"><a href="the-possessed.html">The Possessed</a></td><td class="m">Video</td><td class="v">XIV Kansk Video Festival // Rodchenko Art School</td><td class="go">&rarr;</td></tr>
+<tr class="has" data-href="kolobok.html" data-tags="solo" data-img="img/kolobok-1.jpg"><td class="y">2014</td><td class="t"><a href="kolobok.html">Kolobok</a></td><td class="m">Video performance</td><td class="v">Garage, MAMM, MMOMA, Moscow // EmpireZeroOne, Cologne</td><td class="go">&rarr;</td></tr>
+<tr class="has" data-href="honey-bread.html" data-tags="solo" data-img="img/honey-bread-video.jpg"><td class="y">2013</td><td class="t"><a href="honey-bread.html">Honey Bread</a></td><td class="m">Fiction film</td><td class="v">36th Moscow International Film Festival</td><td class="go">&rarr;</td></tr>
+<tr class="has" data-href="new-moscow.html" data-tags="solo"><td class="y">2013</td><td class="t"><a href="new-moscow.html">New Moscow</a></td><td class="m">Video and objects</td><td class="v">Shchusev Museum of Architecture, Moscow</td><td class="go">&rarr;</td></tr>
+<tr data-tags="solo"><td class="y">2013</td><td class="t">Reconstruction</td><td class="m">Object, fabric and epoxy resin</td><td class="v">Multimedia Art Museum // Museum of Moscow // Victoria Gallery, Samara</td><td class="go"></td></tr>
+<tr data-tags="collab"><td class="y">2013</td><td class="t">Loop<span class="w">with Nastya Kuzmina</span></td><td class="m">Large-scale installation</td><td class="v"><em>Dali</em>, CTI Fabrika, Moscow // <em>Migration</em>, Experimental Field, 2018</td><td class="go"></td></tr>
+<tr data-tags="collab"><td class="y">2013</td><td class="t">Bezmannost<span class="w">with L. Artemenko and N. Kuzmina</span></td><td class="m">Installation</td><td class="v">Student Art Prom, Artplay, Moscow</td><td class="go"></td></tr>
+<tr class="has" data-href="occupy.html" data-tags="collab" data-img="img/occupy-1.jpg"><td class="y">2011</td><td class="t"><a href="occupy.html">Occupy</a><span class="w">with Nastya Kuzmina</span></td><td class="m">Video performance</td><td class="v"></td><td class="go">&rarr;</td></tr>
+</tbody></table>
+<div class="peek" id="peek" aria-hidden="true"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw="></div>
+<script>
+(function(){
+ var rows=[].slice.call(document.querySelectorAll('.list tbody tr')),count=document.getElementById('count');
+ document.querySelectorAll('.filters button').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('.filters button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+  var f=b.dataset.f,n=0;rows.forEach(function(r){var on=f==='all'||(r.dataset.tags||'').split(' ').indexOf(f)>-1;r.hidden=!on;if(on)n++});
+  count.textContent=n+(n===1?' work':' works');});});
+ rows.forEach(function(r){if(r.dataset.href)r.addEventListener('click',function(e){if(e.target.closest('a'))return;location.href=r.dataset.href;});});
+ var peek=document.getElementById('peek'),pi=peek.querySelector('img');
+ rows.forEach(function(r){if(!r.dataset.img)return;
+  r.addEventListener('mouseenter',function(){pi.src=r.dataset.img;peek.classList.add('on')});
+  r.addEventListener('mouseleave',function(){peek.classList.remove('on')});});
+})();
+</script>
+<footer class="foot"><span>&copy; Ira Tsykhanskaya 2026</span><span><a href="impressum.html">Impressum</a>&ensp;//&ensp;<a href="datenschutz.html">Datenschutz</a></span></footer></div></body></html>
